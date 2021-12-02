@@ -1,2 +1,4 @@
 *.pyc
 open_doors_mojibake.egg-info/*
+build/
+dist/
