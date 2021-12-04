@@ -1,0 +1,4 @@
+#FAIL
+µ - micro aka greek lowercase mu
+π - pi
+„” - fancy quotes

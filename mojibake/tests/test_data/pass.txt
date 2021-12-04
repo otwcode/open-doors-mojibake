@@ -1,0 +1,1 @@
+I am an ascii file so every encoding under the sun should work with me
