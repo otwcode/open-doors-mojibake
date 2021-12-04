@@ -49,7 +49,7 @@ def detect_encodings_in_dir(root_dir: str):
         return [detector.result]
     return detector.result
 
-def compare_diffrences(root_dir: str, encoding_a: str, encoding_b: str):
+def compare_differences(root_dir: str, encoding_a: str, encoding_b: str):
     filenames = get_all_files(root_dir)
     differ = difflib.Differ()
     for filename in filenames:

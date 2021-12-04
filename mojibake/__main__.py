@@ -1,4 +1,4 @@
-from . import detect_encodings_in_dir, compare_diffrences
+from . import detect_encodings_in_dir, compare_differences
 import argparse
 import os
 import pathlib
@@ -16,14 +16,25 @@ def main():
             metavar="PATH",
             type=pathlib.Path,
             help="Path to the folder containing stories",
-            default=os.path.curdir,
+            nargs='?'
         )
-
     arguments = parser.parse_args()
-    detected = detect_encodings_in_dir(arguments.path)
+    if arguments.path is None:
+        path = os.path.curdir
+    else:
+        path = arguments.path
+
+    if not os.path.isdir(path):
+        print("Specified directory does not exist or is a file!")
+        sys.exit(1)
+
+    detected = detect_encodings_in_dir(path)
     if len(detected) == 1:
         print("This archive was detected as", end=" ", file=sys.stderr, flush=True)
         print(detected[0]['encoding'])
+    elif len(detected) == 0:
+        print("Failed to detect any encoding!")
+        sys.exit(1)
     else:
         print(
                 "We are not quite sure, here is what we have detected:",
@@ -44,16 +55,16 @@ def main():
             )
 
         print()
-        print(f"Press <Enter> to compare diffrences beetween {detected[0]['encoding']}"+
+        print(f"Press <Enter> to compare differences between {detected[0]['encoding']}"+
                 f" and {detected[1]['encoding']}")
         input()
-        diffrent_files = 0
-        for x in compare_diffrences(arguments.path, *[x['encoding'] for x in detected][:2]):
+        different_files = 0
+        for x in compare_differences(path, *[x['encoding'] for x in detected][:2]):
             if len(x) > 0:
-                diffrent_files += 1
+                different_files += 1
                 print(x)
             input()
-        print(f"Detected diffrences in {diffrent_files} files")
+        print(f"Detected differences in {different_files} files")
 
 if __name__ == "__main__":
     main()
