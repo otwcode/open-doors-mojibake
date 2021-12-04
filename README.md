@@ -19,7 +19,7 @@ in repository.
 
 ## How to use:
 
-- `mojibake` will detect encoding for files in current directory.
+- `mojibake` will detect encoding of files in current directory.
 - `mojibake ./some/path/to/foo/` will detect encoding in specified directory.
 - `mojibake -h` will show a help message.
 
