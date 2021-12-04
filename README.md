@@ -58,7 +58,3 @@ Press <Enter> to continue
 Detected differences in 1 files
 ```
 
-## Options
-
-More to come!
-
